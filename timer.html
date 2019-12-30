@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>codeGround:Time</title>
+	<style>
+		body{
+			margin:0;
+			padding:0;
+			overflow:hidden;
+			background-size:cover;
+		}
+		 .timer-container{
+		 	 margin:200px auto 200px;
+		 	 max-width:350px;
+		 	 height:auto;
+		 }
+		 .timer-container #clk{
+		 	  font-size:3rem;
+		 	  font-family:algeria;
+		 	  font-weight:bolder;
+		 }
+		 #Day,#Grt{
+		 	 font-size:1.72rem;
+		 }
+		 .botBtn{
+		 	 width:100%;
+		 	 display:block;
+		 	 padding:14px 16px;
+		 	 background-color:green;
+		 	 border:none;
+		 	 color:#fff;
+		 	 font-size:1.72rem;
+		 	 text-transform:uppercase;
+		 	 outline-style:none;
+		 }
+		 .botBtn:hover{
+		 	 box-shadow:0 8px 16px 0 black;
+		 }
+	</style>
+</head>
+<body>
+	<div class="timer-container">
+	<h3 id="Day"></h3>
+	<h1 id="clk"></h1>
+	<p id="Grt"></p>
+	 <button class="bot botBtn">Start Bot !!!</button>
+	</div>
+	 <script type="text/javascript">
+	 	 let clock;
+	 	 let cal;
+	 	 let day;
+	 	 document.addEventListener('DOMContentLoaded',function(){
+	 	 	 setTime();
+	 	 })
+	 	  function setTime(){
+	 	  	 let time = new Date();
+	 	  	 let h = time.getHours();
+	 	  	 let m = time.getMinutes();
+	 	  	 let s = time.getSeconds();
+	 	  	 let dy = time.getDay();
+	 	  	 let dt = time.getDate();
+	 	  	 let mt = time.getMonth();
+	 	  	 let yr = time.getFullYear();
+	 	  	 m = checkTime(m);
+	 	  	 s = checkTime(s);
+
+	 	  	 setInterval(setTime,500);
+
+         if(h < 11){
+         	clock =  `${h} : ${m} : ${s} AM`;
+         }else{
+         	 clock = `${h} : ${m} : ${s} PM`;
+         }
+         switch(dy){
+         	  case 0:
+         	  day = 'Sunday';
+         	  break;
+         	  case 1:
+         	  day = 'Monday';
+         	  break;
+         	  case 2:
+         	  day = 'Tuesday';
+         	  break;
+         	  case 3:
+         	  day = 'Wesnesday';
+         	  break;
+         	  case 4:
+         	  day = 'Thursday';
+         	  break;
+         	  case 5:
+         	  day = 'Friday';
+         	  break;
+         	  case 6:
+         	  day = 'Saturday';
+         	  break;
+         }
+         cal = ` DATE : ${day}  ${dt} - ${mt} - ${yr}`;
+	 	  	 // clock = h + ":" + m + ":" + s;
+	 	  	 document.getElementById('clk').innerHTML = clock;
+         h = Greeting(h);
+         document.getElementById('Day').innerHTML = cal;
+	 	  }
+	 	  /*
+	 	   This function handle putting of 0 in front of minutes and seconds when the counter is done !!! 
+	 	  */
+	 	  function checkTime(t){
+	 	  	 if(t<10){
+	 	  	 	 t = "0" + t;
+	 	  	 }
+	 	  	 return t;
+	 	  }
+      // This function handles greeting;
+	 	  function Greeting(w){
+	 	  	let greeting;
+	 	  	 if(w < 11){
+	 	  	 	 greeting = 'GoodMorning !!!';
+	 	  	 	 document.body.style.background = ' url(sky.jpg) center center no-repeat';
+	 	  	 }else if(w < 20){
+	 	  	 	 greeting = 'GoodDay !!!';
+	 	  	 	 document.body.style.background = 'url(sunset.jpg) center center no-repeat';
+	 	  	 	  // document.body.style.color = '#fff';
+	 	  	 }else{
+	 	  	 	 greeting = 'GoodEvening !!!';
+	 	  	 	 document.body.style.background = ' url(dark.jpg) center center no-repeat';
+	 	  	 	 document.body.style.color = '#fff';
+	 	  	 }
+	 	  	document.getElementById('Grt').innerHTML = ` ${greeting}`
+	 	  }
+	 	  // bot function ....
+	 	  document.querySelector('.bot').addEventListener('click',function(e){
+	 	  	 alert(' BOT Still Under Solid Construction !!!');
+	 	  })
+	 </script>
+</body>
+</html>
